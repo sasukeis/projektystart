@@ -1,0 +1,59 @@
+
+l = 0
+litery = []
+wykorzystane = []
+
+def lista(slowo):
+    zycia = 8
+    x=0
+    s = ''
+    for i in range(len(slowo)):
+        s+= '_'
+        litery.append(slowo[x])
+        x+=1
+    print(s)
+    for i in range(32):
+        print('Podaj ', i+1, ' litere')
+        litera = input(str())
+        if litera in wykorzystane:
+            print('Zdublowales litere')
+            wykorzystane.remove(litera)
+        wykorzystane.append(litera)
+        print('Wykorzystane znaki:\n ', wykorzystane)
+        if litera not in litery:
+            print('Nieprawidlowa litera')
+            zycia -= 1
+            print('Ilosc pozostalych zyc: ', zycia)
+            if zycia == 0:
+                print('Przegrales, sprobuj jeszcze raz')
+        if litera in litery:
+            y = slowo.index(litera)
+            c = slowo.count(litera)
+            s = s[:y] + litera + s[y+1:]
+            print(s)
+            if s == slowo:
+                print('Gratulacje jestes mistrzem wisielca')
+                break
+            else:
+                pytanie = str(input('Czy chcesz zgadnac cale haslo? Wpisz y jeżeli tak lub n jeżeli nie'))
+                if pytanie == 'y':
+                    haslo = str(input('Podaj haslo: '))
+                    if haslo == slowo:
+                        print('Gratulacje wygrales gre')
+                        break
+                    else:
+                        print('Niestety pomylka!')
+                        continue
+                if pytanie == 'n':
+                    continue
+                else:
+                    print('Wpisales zla litere, gramy dalej')
+
+
+print('Witaj w grze w wisielca, pozwol swojemu koledze wpisac slowo i zgadnij je')
+slowo = str(input('Podaj slowo: '))
+lista(slowo)
+
+
+
+
